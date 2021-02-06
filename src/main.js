@@ -9,10 +9,12 @@ const store = new Vuex.Store({
     counter: 0,
   },
   mutations: {
-    increment(state) {
-      state.counter += 5;
+    increment(state, paylod) {
+      if (paylod) {
+        state.counter += paylod.value;
+      }
     },
-    decrement(state) {
+    decrement(state, paylod) {
       state.counter -= 7;
     }
   },

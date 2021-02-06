@@ -10,7 +10,9 @@
 export default {
   methods: {
     increment() {
-      this.$store.commit('increment');
+      this.$store.commit('increment', {
+        value: 5
+      });
     },
     decrement() {
       this.$store.commit('decrement');
