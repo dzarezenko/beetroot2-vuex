@@ -18,6 +18,21 @@ const store = new Vuex.Store({
       state.counter -= 7;
     }
   },
+  getters: {
+    counter(state) {
+      return state.counter;
+    },
+    normalizedCounter(state, getters) {
+      if (getters.counter < 0) {
+        return 0;
+      }
+      if (getters.counter > 50) {
+        return 50;
+      }
+
+      return getters.counter;
+    },
+  },
 });
 
 Vue.config.productionTip = false

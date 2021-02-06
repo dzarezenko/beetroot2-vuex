@@ -1,6 +1,6 @@
 <template>
   <section>
-    <h2>{{ $store.state.counter }}</h2>
+    <h2>{{ $store.getters.normalizedCounter }}</h2>
     <button @click="increment">+1</button>
     <button @click="decrement">-1</button>
   </section>

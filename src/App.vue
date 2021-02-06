@@ -1,6 +1,6 @@
 <template>
   <Container title="Counter 1">
-    <h2>{{ $store.state.counter }}</h2>
+    <h2>{{ $store.getters.counter }}</h2>
     <button @click="increment">+1</button>
 
     <Counter />
@@ -17,7 +17,7 @@ export default {
     Counter,
   },
   mounted() {
-    console.log(this);
+    console.log(this.$store);
   },
   methods: {
     increment() {
