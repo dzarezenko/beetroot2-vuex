@@ -6,7 +6,15 @@ import App from './App.vue'
 Vue.use(Vuex);
 const store = new Vuex.Store({
   state: {
-    counter: 10,
+    counter: 0,
+  },
+  mutations: {
+    increment(state) {
+      state.counter += 5;
+    },
+    decrement(state) {
+      state.counter -= 7;
+    }
   },
 });
 
