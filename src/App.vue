@@ -1,6 +1,6 @@
 <template>
   <Container title="Counter 1">
-    <h2>{{ $store.getters.counter }}</h2>
+    <h2>{{ counter }}</h2>
     <button @click="increment">+1</button>
 
     <Counter />
@@ -8,6 +8,8 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex';
+
 import Container from "./components/Container";
 import Counter from "./components/Counter";
 
@@ -19,9 +21,15 @@ export default {
   mounted() {
     console.log(this.$store);
   },
+  computed: {
+    ...mapGetters(['counter'])
+  },
   methods: {
+    ...mapActions({
+      inc: 'increment',
+    }),
     increment() {
-      this.$store.dispatch('increment', {
+      this.inc({
         value: 3
       });
     }
