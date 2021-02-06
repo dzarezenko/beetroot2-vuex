@@ -9,13 +9,19 @@ const store = new Vuex.Store({
     counter: 0,
   },
   mutations: {
-    increment(state, paylod) {
-      if (paylod) {
-        state.counter += paylod.value;
-      }
+    increment(state, val) {
+      state.counter += val;
     },
-    decrement(state, paylod) {
+    decrement(state, payload) {
       state.counter -= 7;
+    }
+  },
+  actions: {
+    async increment(context, payload) {
+      //console.log(context);
+      if (payload) {
+        context.commit('increment', payload.value);
+      }
     }
   },
   getters: {
