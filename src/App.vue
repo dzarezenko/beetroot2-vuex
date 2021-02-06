@@ -1,7 +1,7 @@
 <template>
   <Container title="Counter 1">
-    <h2>0</h2>
-    <button>+1</button>
+    <h2>{{ counter }}</h2>
+    <button @click="counter++">+1</button>
   </Container>
 </template>
 
@@ -9,6 +9,11 @@
 import Container from "./components/Container";
 
 export default {
+  data() {
+    return {
+      counter: 0,
+    }
+  },
   components: {
     Container,
   },
