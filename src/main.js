@@ -4,11 +4,11 @@ import Vuex from 'vuex'
 import App from './App.vue'
 
 Vue.use(Vuex);
-const store = new Vuex.Store({
+
+const counter = {
   state() {
     return {
       counter: 0,
-      isLoggedIn: false,
     }
   },
   mutations: {
@@ -18,9 +18,6 @@ const store = new Vuex.Store({
     decrement(state, _) {
       state.counter -= 7;
     },
-    setAuth(state, payload) { // isAuth
-      state.isLoggedIn = payload.isAuth;
-    },
   },
   actions: {
     async increment(context, payload) {
@@ -29,16 +26,12 @@ const store = new Vuex.Store({
         context.commit('increment', payload.value);
       }
     },
-    login({ commit }) { // get just commit
-      commit("setAuth", { isAuth: true });
-    },
-    logout(context) { // get context
-      context.commit("setAuth", { isAuth: false });
-    },
   },
   getters: {
-    counter(state) {
-      return state.counter;
+    counter(state, _, rootState, rootGetters) {
+      //console.log(rootGetters)
+      //console.log(rootState.isLoggedIn);
+      return `${state.counter} ` + (rootState.isLoggedIn ? "yes" : "no");
     },
     normalizedCounter(_, getters) {
       if (getters.counter < 0) {
@@ -50,6 +43,33 @@ const store = new Vuex.Store({
 
       return getters.counter;
     },
+  }
+};
+
+const store = new Vuex.Store({
+  modules: {
+    counter
+  },
+
+  state() {
+    return {
+      isLoggedIn: false,
+    }
+  },
+  mutations: {
+    setAuth(state, payload) { // isAuth
+      state.isLoggedIn = payload.isAuth;
+    },
+  },
+  actions: {
+    login({ commit }) { // get just commit
+      commit("setAuth", { isAuth: true });
+    },
+    logout(context) { // get context
+      context.commit("setAuth", { isAuth: false });
+    },
+  },
+  getters: {
     isAuthenticated(state) {
       return state.isLoggedIn;
     },
