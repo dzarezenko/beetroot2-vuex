@@ -29,10 +29,10 @@ const store = new Vuex.Store({
         context.commit('increment', payload.value);
       }
     },
-    login(context) {
-      context.commit("setAuth", { isAuth: true });
+    login({ commit }) { // get just commit
+      commit("setAuth", { isAuth: true });
     },
-    logout(context) {
+    logout(context) { // get context
       context.commit("setAuth", { isAuth: false });
     },
   },

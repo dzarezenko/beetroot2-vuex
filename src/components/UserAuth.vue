@@ -1,21 +1,21 @@
 <template>
   <section>
 
-    <button v-if="!$store.state.isLoggedIn" @click="login">Login</button> &nbsp; 
-    <button v-if="$store.state.isLoggedIn" @click="logout">Logout</button>
+    <button v-if="!isAuthenticated" @click="login">Login</button> &nbsp; 
+    <button v-else @click="logout">Logout</button>
 
   </section>
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
+
 export default {
   methods: {
-    login() {
-      this.$store.dispatch('login');
-    },
-    logout() {
-      this.$store.dispatch('logout');
-    },
+    ...mapActions(['login', 'logout']),
   },
+  computed: {
+    ...mapGetters(['isAuthenticated']),
+  }
 }
 </script>

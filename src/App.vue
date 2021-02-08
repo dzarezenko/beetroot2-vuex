@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Container title="Counter" v-if="$store.state.isLoggedIn">
+    <Container title="Counter" v-if="isAuthenticated">
       <h2>{{ counter }}</h2>
       <button @click="increment">+1</button>
 
@@ -30,7 +30,7 @@ export default {
     console.log(this.$store);
   },
   computed: {
-    ...mapGetters(['counter'])
+    ...mapGetters(['counter', 'isAuthenticated'])
   },
   methods: {
     ...mapActions({
