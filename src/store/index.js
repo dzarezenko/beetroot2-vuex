@@ -1,4 +1,4 @@
-import counter from "./counter.js";
+import counter from "./counter/index";
 
 export default {
   modules: {
