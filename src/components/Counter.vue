@@ -11,10 +11,10 @@ import { mapGetters, mapActions, mapMutations } from 'vuex';
 
 export default {
   computed: {
-    ...mapGetters(['normalizedCounter']),
+    ...mapGetters('counter', ['normalizedCounter']),
   },
   methods: {
-    ...mapActions({
+    ...mapActions('counter', {
       inc: 'increment'
     }),
     increment() {
@@ -23,7 +23,7 @@ export default {
       });
     },
 
-    ...mapMutations({
+    ...mapMutations('counter', {
       dec: 'decrement'
     }),
     decrement() {

@@ -30,14 +30,19 @@ export default {
     console.log(this.$store);
   },
   computed: {
-    ...mapGetters(['counter', 'isAuthenticated'])
+    //...mapGetters('counter', ['counter']),
+    ...mapGetters(['isAuthenticated']),
+
+    counter() {
+      return this.$store.getters['counter/counter'];
+    }
   },
   methods: {
-    ...mapActions({
+    /*...mapActions('counter', {
       inc: 'increment',
-    }),
+    }),*/
     increment() {
-      this.inc({
+      this.$store.dispatch('counter/increment', {
         value: 3
       });
     }

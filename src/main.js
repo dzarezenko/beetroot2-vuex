@@ -6,6 +6,7 @@ import App from './App.vue'
 Vue.use(Vuex);
 
 const counter = {
+  namespaced: true,
   state() {
     return {
       counter: 0,
