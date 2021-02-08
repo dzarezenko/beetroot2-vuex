@@ -1,8 +1,8 @@
 <template>
   <section>
 
-    <button @click="login">Login</button> &nbsp; 
-    <button @click="logout">Logout</button>
+    <button v-if="!$store.state.isLoggedIn" @click="login">Login</button> &nbsp; 
+    <button v-if="$store.state.isLoggedIn" @click="logout">Logout</button>
 
   </section>
 </template>
@@ -11,10 +11,10 @@
 export default {
   methods: {
     login() {
-      //TODO: ...
+      this.$store.dispatch('login');
     },
     logout() {
-      //TODO: ...
+      this.$store.dispatch('logout');
     },
   },
 }

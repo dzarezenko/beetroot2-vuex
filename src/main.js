@@ -8,15 +8,19 @@ const store = new Vuex.Store({
   state() {
     return {
       counter: 0,
+      isLoggedIn: false,
     }
   },
   mutations: {
     increment(state, val) {
       state.counter += val;
     },
-    decrement(state, payload) {
+    decrement(state, _) {
       state.counter -= 7;
-    }
+    },
+    setAuth(state, payload) { // isAuth
+      state.isLoggedIn = payload.isAuth;
+    },
   },
   actions: {
     async increment(context, payload) {
@@ -24,13 +28,19 @@ const store = new Vuex.Store({
       if (payload) {
         context.commit('increment', payload.value);
       }
-    }
+    },
+    login(context) {
+      context.commit("setAuth", { isAuth: true });
+    },
+    logout(context) {
+      context.commit("setAuth", { isAuth: false });
+    },
   },
   getters: {
     counter(state) {
       return state.counter;
     },
-    normalizedCounter(state, getters) {
+    normalizedCounter(_, getters) {
       if (getters.counter < 0) {
         return 0;
       }
@@ -39,6 +49,9 @@ const store = new Vuex.Store({
       }
 
       return getters.counter;
+    },
+    isAuthenticated(state) {
+      return state.isLoggedIn;
     },
   },
 });

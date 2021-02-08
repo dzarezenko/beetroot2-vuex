@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Container title="Counter 1">
+    <Container title="Counter" v-if="$store.state.isLoggedIn">
       <h2>{{ counter }}</h2>
       <button @click="increment">+1</button>
 
