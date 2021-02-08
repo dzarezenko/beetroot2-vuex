@@ -1,6 +1,6 @@
 import counter from "./counter.js";
 
-const store = {
+export default {
   modules: {
     counter
   },
@@ -29,5 +29,3 @@ const store = {
     },
   },
 };
-
-export default store;

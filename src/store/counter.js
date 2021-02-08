@@ -1,4 +1,4 @@
-const counter = {
+export default {
   namespaced: true,
   state() {
     return {
@@ -39,5 +39,3 @@ const counter = {
     },
   }
 };
-
-export default counter;
